@@ -1,0 +1,15 @@
+services:
+  tg-cli:
+    build: .
+    container_name: tgtime
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./data:/app/data
+    networks:
+      - tg-network
+
+networks:
+  tg-network:
+    driver: bridge
