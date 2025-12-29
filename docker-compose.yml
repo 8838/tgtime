@@ -7,9 +7,4 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       - ./data:/app/data
-    networks:
-      - tg-network
-
-networks:
-  tg-network:
-    driver: bridge
+    network_mode: bridge
