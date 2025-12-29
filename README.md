@@ -1,4 +1,4 @@
-介绍：Telegram的First Name(名字)实时显示为当前时间，每分钟更新一次。支持添加多个TG账户
+介绍：Telegram的Last Name(姓氏)实时显示为当前时间，每分钟更新一次。支持添加多个TG账户
 
 说明：docker环境，准备API ID 和 API Hash（从 https://my.telegram.org/apps 获取）
 
