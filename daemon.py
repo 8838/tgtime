@@ -80,9 +80,9 @@ async def update_name_task(phone: str, client: TelegramClient):
         now = datetime.now()
         hour = now.strftime("%H")
         minute = now.strftime("%M")
-        first_name = f"{hour}:{minute} UTC+8"
-        await client(UpdateProfileRequest(first_name=first_name))
-        logger.info(f"✅ [{phone}] 初始更新 -> {first_name}")
+        last_name = f"{hour}:{minute} UTC+8"
+        await client(UpdateProfileRequest(last_name=last_name))
+        logger.info(f"✅ [{phone}] 初始更新 -> {last_name}")
     except Exception as e:
         logger.error(f"❌ [{phone}] 初始更新失败: {e}")
     
@@ -104,12 +104,12 @@ async def update_name_task(phone: str, client: TelegramClient):
             minute = now.strftime("%M")
             
             # 格式化为 HH:MM UTC+8
-            first_name = f"{hour}:{minute} UTC+8"
+            last_name = f"{hour}:{minute} UTC+8"
             
-            # 更新 Telegram 名字
-            await client(UpdateProfileRequest(first_name=first_name))
+            # 更新 Telegram 名字（更新到 Last Name）
+            await client(UpdateProfileRequest(last_name=last_name))
             
-            logger.info(f"✅ [{phone}] 已更新 -> {first_name}")
+            logger.info(f"✅ [{phone}] 已更新 -> {last_name}")
         
         except asyncio.CancelledError:
             logger.info(f"⏹️  [{phone}] 更新任务已停止")
