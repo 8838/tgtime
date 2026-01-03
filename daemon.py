@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Telegram 名字更新器 - 后台守护进程
-负责持续运行并更新所有账号的名字
+Telegram 显示姓氏更新器 - 后台守护进程
+负责持续运行并更新所有账号的显示姓氏
 """
 import os
 import sys
@@ -17,12 +17,11 @@ from typing import Dict
 from telethon import TelegramClient
 from telethon.tl.functions.account import UpdateProfileRequest
 
-# 配置日志
+# 配置日志 - 仅输出到终端
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('/app/data/daemon.log'),
         logging.StreamHandler()
     ]
 )
@@ -72,7 +71,7 @@ config_manager = ConfigManager()
 
 
 async def update_name_task(phone: str, client: TelegramClient):
-    """更新名字的任务 - 每分钟更新一次"""
+    """更新显示姓氏的任务 - 每分钟更新一次"""
     logger.info(f"📝 [{phone}] 开始自动更新任务")
     
     # 立即执行一次更新
@@ -106,7 +105,7 @@ async def update_name_task(phone: str, client: TelegramClient):
             # 格式化为 HH:MM UTC+8
             last_name = f"{hour}:{minute} UTC+8"
             
-            # 更新 Telegram 名字（更新到 Last Name）
+            # 更新 Telegram 显示姓氏（更新到 Last Name）
             await client(UpdateProfileRequest(last_name=last_name))
             
             logger.info(f"✅ [{phone}] 已更新 -> {last_name}")
@@ -291,7 +290,7 @@ async def main():
     global running
     
     logger.info("=" * 60)
-    logger.info("🤖 Telegram 名字自动更新守护进程启动")
+    logger.info("🤖 Telegram 显示姓氏自动更新守护进程启动")
     logger.info("=" * 60)
     
     # 写入 PID
