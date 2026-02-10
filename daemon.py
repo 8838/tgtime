@@ -218,7 +218,7 @@ async def monitor_config_changes():
     
     while running:
         try:
-            await asyncio.sleep(5)  # 每5秒检查一次
+            await asyncio.sleep(60)  # 每60秒检查一次
             
             if not running:
                 break
